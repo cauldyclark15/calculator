@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import NumButtonCell from './NumButtonCell';
+import OpeButtonCell from './OpeButtonCell';
 
 const CalcuForm = ({onButtonClick, answer}) => (
     <table frameBorder={2}>
@@ -21,9 +22,9 @@ const CalcuForm = ({onButtonClick, answer}) => (
                 <NumButtonCell
                     onClick={() => onButtonClick('9')}
                 >9</NumButtonCell>
-                <NumButtonCell
+                <OpeButtonCell
                     onClick={() => onButtonClick('-')}
-                >-</NumButtonCell>
+                >-</OpeButtonCell>
             </tr>
         </tbody>
     </table>

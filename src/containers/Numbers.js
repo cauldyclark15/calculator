@@ -16,9 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const Calculator = connect(
+const Numbers = connect(
     mapStateToProps,
     mapDispatchToProps
 )(CalcuForm);
 
-export default Calculator;
+export default Numbers;
