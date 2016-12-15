@@ -1,17 +1,10 @@
-import React, { Component } from 'react';
-import NumButtonCell from './NumButtonCell';
-import logo from '../logo.svg';
-import '../App.css';
+import React from 'react';
+import Calculator from '../containers/Calculator';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <NumButtonCell>1</NumButtonCell>
-    );
-  }
-}
+const App = () => (
+    <div>
+        <Calculator />
+    </div>
+);
 
 export default App;
