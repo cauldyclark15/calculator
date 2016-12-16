@@ -1,15 +1,17 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import {inputOperation} from '../actions/action';
 
-const OpeButtonCell = ({onClick, children}) => (
+let OpeButtonCell = ({dispatch, children}) => (
     <td>
-        <button onClick={onClick}>
+        <button onClick={() => {
+            dispatch(inputOperation(children));
+        }}>
             {children}
         </button>
     </td>
 );
 
-OpeButtonCell.propTypes = {
-    onClick: PropTypes.func.isRequired
-};
+OpeButtonCell = connect()(OpeButtonCell);
 
 export default OpeButtonCell;

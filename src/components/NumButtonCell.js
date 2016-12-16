@@ -1,16 +1,18 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import {inputDigit} from '../actions/action';
 
-const NumButtonCell = ({onClick, children}) => (
+let NumButtonCell = ({dispatch, children}) => (
     <td>
-        <button onClick={onClick}>
+        <button onClick={() => {
+            dispatch(inputDigit(children));
+        }}>
             {children}
         </button>
     </td>
 );
 
-NumButtonCell.propTypes = {
-    onClick: PropTypes.func.isRequired
-};
+NumButtonCell = connect()(NumButtonCell);
 
 export default NumButtonCell;
 
