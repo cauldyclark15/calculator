@@ -89,7 +89,7 @@ const CalcuReducer = (state = initialState, action) => {
                 history: state.answer + ' ' + action.operation,
                 toOperation: state.toOperation ? !state.toOperation : state.toOperation,
                 operation: action.operation,
-                toSecondNum: !state.toSecondNum
+                toSecondNum: state.toSecondNum ? state.toSecondNum : !state.toSecondNum
             });
         case 'GET_ANSWER':
             if (!state.toAnswer) {
@@ -102,7 +102,7 @@ const CalcuReducer = (state = initialState, action) => {
                 secondNum: 0,
                 operation: '',
                 toOperation: state.toOperation ? state.toOperation : !state.toOperation,
-                toAnswer: !state.toAnswer,
+                toAnswer: false,
                 equalPressed: state.equalPressed ? state.equalPressed : !state.equalPressed
             });
         default:

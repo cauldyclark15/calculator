@@ -8,8 +8,6 @@ import './index.css';
 
 const store = createStore(calculatorReducer);
 
-console.log(store.getState());
-
 render(
   <Provider store={store}>
     <CalcuForm />
