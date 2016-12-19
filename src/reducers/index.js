@@ -106,6 +106,26 @@ const CalcuReducer = (state = initialState, action) => {
                 equalPressed: state.equalPressed ? state.equalPressed : !state.equalPressed,
                 toSecondNum: false
             });
+        case 'PUT_DECIMAL_POINT':
+            if (!state.toDecimal) {
+                return state;
+            }
+            if (state.toSecondNum) {
+                if (state.secondNum === 0) {
+                    return Object.assign({}, state, {
+                        answer: '0' + state.dot,
+                        toDecimal: !state.toDecimal
+                    });
+                }
+                return Object.assign({}, state, {
+                    answer: state.answer
+                });
+            }
+            return Object.assign({}, state, {
+                toDecimal: !state.toDecimal,
+                toOperation: state.toOperation ? state.toOperation : !state.toOperation,
+                toAnswer: false
+            });
         default:
             return state;
     }
