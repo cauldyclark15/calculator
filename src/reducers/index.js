@@ -103,7 +103,8 @@ const CalcuReducer = (state = initialState, action) => {
                 operation: '',
                 toOperation: state.toOperation ? state.toOperation : !state.toOperation,
                 toAnswer: false,
-                equalPressed: state.equalPressed ? state.equalPressed : !state.equalPressed
+                equalPressed: state.equalPressed ? state.equalPressed : !state.equalPressed,
+                toSecondNum: false
             });
         default:
             return state;
