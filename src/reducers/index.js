@@ -10,7 +10,7 @@ const initialState = {
     toAnswer: false,
     toDecimal: true,
     toSecondNum: false,
-    equalPressed: false
+    equalPressed: false,
 };
 
 const displayAnswer = (current, digit) => {
@@ -46,14 +46,6 @@ const getAnswer = (num1, num2, operation) => {
 const CalcuReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'INPUT_DIGIT':
-            if (state.toSecondNum) {
-                return Object.assign({}, state, {
-                    answer: state.secondNum === 0 ? action.digit : displayAnswer(state.answer, action.digit),
-                    secondNum: getNum(state.secondNum, action.digit),
-                    toOperation: state.toOperation ? state.toOperation : !state.toOperation,
-                    toAnswer: state.toAnswer ? state.toAnswer : !state.toAnswer
-                });
-            }
             if (state.equalPressed) {
                 return Object.assign({}, state, {
                     answer: action.digit,
@@ -63,7 +55,6 @@ const CalcuReducer = (state = initialState, action) => {
             }
             return Object.assign({}, state, {
                 answer: state.firstNum === 0 ? action.digit : displayAnswer(state.answer, action.digit),
-                firstNum: getNum(state.firstNum, action.digit)
             });
         case 'INPUT_OPERATION':
             if (!state.toOperation) {
@@ -77,11 +68,10 @@ const CalcuReducer = (state = initialState, action) => {
                 }
                 return Object.assign({}, state, {
                     history: state.history + ' ' + state.answer + ' ' + action.operation,
-                    answer: getAnswer(state.firstNum, state.secondNum, state.operation).toString(),
+                    answer: getAnswer(state.firstNum, parseFloat(state.answer), state.operation).toString(),
                     toOperation: state.toOperation ? !state.toOperation : state.toOperation,
                     toAnswer: !state.toAnswer,
-                    firstNum: getAnswer(state.firstNum, state.secondNum, state.operation),
-                    secondNum: 0,
+                    firstNum: getAnswer(state.firstNum, parseFloat(state.answer), state.operation),
                     operation: action.operation
                 });
             }
@@ -89,42 +79,25 @@ const CalcuReducer = (state = initialState, action) => {
                 history: state.answer + ' ' + action.operation,
                 toOperation: state.toOperation ? !state.toOperation : state.toOperation,
                 operation: action.operation,
-                toSecondNum: state.toSecondNum ? state.toSecondNum : !state.toSecondNum
+                firstNum: parseFloat(state.answer),
             });
         case 'GET_ANSWER':
-            if (!state.toAnswer) {
-                return state;
-            }
             return Object.assign({}, state, {
                 history: '',
                 answer: getAnswer(state.firstNum, state.secondNum, state.operation).toString(),
                 firstNum: getAnswer(state.firstNum, state.secondNum, state.operation),
-                secondNum: 0,
                 operation: '',
                 toOperation: state.toOperation ? state.toOperation : !state.toOperation,
                 toAnswer: false,
                 equalPressed: state.equalPressed ? state.equalPressed : !state.equalPressed,
-                toSecondNum: false
             });
         case 'PUT_DECIMAL_POINT':
             if (!state.toDecimal) {
                 return state;
             }
-            if (state.toSecondNum) {
-                if (state.secondNum === 0) {
-                    return Object.assign({}, state, {
-                        answer: '0' + state.dot,
-                        toDecimal: !state.toDecimal
-                    });
-                }
-                return Object.assign({}, state, {
-                    answer: state.answer
-                });
-            }
             return Object.assign({}, state, {
+                answer: state.firstNum.toString() + action.dot,
                 toDecimal: !state.toDecimal,
-                toOperation: state.toOperation ? state.toOperation : !state.toOperation,
-                toAnswer: false
             });
         default:
             return state;
