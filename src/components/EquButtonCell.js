@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getAnswer} from '../actions/action';
+import {Button} from 'react-bootstrap';
 
 let EquButtonCell = ({dispatch, children}) => (
-    <td>
-        <button onClick={() => {
-            dispatch(getAnswer());
-        }}>
-            {children}
-        </button>
-    </td>
+    <Button bsStyle="default" onClick={() => {
+        dispatch(getAnswer());
+    }}>
+        {children}
+    </Button>
 );
 
 EquButtonCell = connect()(EquButtonCell);

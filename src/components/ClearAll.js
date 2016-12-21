@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearAll} from '../actions/action';
+import {Button} from 'react-bootstrap';
 
 let CLButtonCell = ({dispatch, children}) => (
-    <td>
-        <button onClick={() => {
-            dispatch(clearAll());
-        }}>
-            {children}
-        </button>
-    </td>
+    <Button bsSize="small" bsStyle="danger" onClick={() => {
+        dispatch(clearAll());
+    }}>
+        {children}
+    </Button>
 );
 
 CLButtonCell = connect()(CLButtonCell);

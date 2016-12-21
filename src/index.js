@@ -5,6 +5,8 @@ import {createStore} from 'redux';
 import calculatorReducer from './reducers/index';
 import CalcuForm from './components/CalcuForm';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 const store = createStore(calculatorReducer);
 

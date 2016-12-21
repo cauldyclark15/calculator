@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react';
 
 const HistoryDisplay = ({history}) => (
-    <tr>
-        <td colSpan={4}>
-            <input type="text" value={history} readOnly="readonly" />
-        </td>
-    </tr>
+    <div>
+        <input type="text" value={history} readOnly="readonly" />
+    </div>
 );
 
 HistoryDisplay.propTypes = {

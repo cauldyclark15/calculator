@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react';
 
 const MainDisplay = ({answer}) => (
-    <tr>
-        <td colSpan={4}>
-            <input type="text" value={answer} readOnly="readonly" />
-        </td>
-    </tr>
+    <div>
+        <input type="text" value={answer} readOnly="readonly" />
+    </div>
 );
 
 MainDisplay.propTypes = {

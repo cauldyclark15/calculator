@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {inputOperation} from '../actions/action';
+import {Button} from 'react-bootstrap';
 
 let OpeButtonCell = ({dispatch, children}) => (
-    <td>
-        <button onClick={() => {
-            dispatch(inputOperation(children));
-        }}>
-            {children}
-        </button>
-    </td>
+    <Button bsStyle="default" onClick={() => {
+        dispatch(inputOperation(children));
+    }}>
+        {children}
+    </Button>
 );
 
 OpeButtonCell = connect()(OpeButtonCell);
