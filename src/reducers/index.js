@@ -17,14 +17,6 @@ const displayAnswer = (current, digit) => {
     return digit;
 };
 
-const getNum = (prev, currStr) => {
-    let curr = parseFloat(currStr);
-    if (prev === 0 && curr === 0) {
-        return 0;
-    }
-    return parseFloat(prev.toString() + curr.toString());
-};
-
 const getAnswer = (num1, num2, operation) => {
     switch (operation) {
         case '÷':
@@ -43,10 +35,12 @@ const getAnswer = (num1, num2, operation) => {
 const CalcuReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'INPUT_DIGIT':
+            if (state.answer === 'Infinity') {
+                return state;
+            }
             if (state.equalPressed) {
                 return Object.assign({}, state, {
                     answer: action.digit,
-                    previous: getNum(0, action.digit),
                     equalPressed: !state.equalPressed
                 });
             }
@@ -59,6 +53,13 @@ const CalcuReducer = (state = initialState, action) => {
                 return state;
             }
             if (!!state.answer && !!state.previous) {
+                if (state.operation === '÷' && state.answer === '0') {
+                    return Object.assign({}, initialState, {
+                        answer: 'Infinity',
+                        toOperation: false,
+                        toDecimal: false,
+                    });
+                }
                 return Object.assign({}, state, {
                     history: state.history + ' ' + state.answer + ' ' + action.operation,
                     answer: getAnswer(state.previous, parseFloat(state.answer), state.operation).toString(),
@@ -76,6 +77,9 @@ const CalcuReducer = (state = initialState, action) => {
                 equalPressed: false,
             });
         case 'GET_ANSWER':
+            if (state.answer === 'Infinity') {
+                return state;
+            }
             return Object.assign({}, state, {
                 history: '',
                 answer: getAnswer(state.previous, parseFloat(state.answer), state.operation).toString(),
@@ -92,6 +96,15 @@ const CalcuReducer = (state = initialState, action) => {
                 answer: state.answer + action.dot,
                 toDecimal: !state.toDecimal,
             });
+        case 'CLEAR_ENTRY':
+            if (state.answer === 'Infinity' || !state.toOperation) {
+                return state;
+            }
+            return Object.assign({}, state, {
+                answer: state.answer.length === 1 ? '0' : state.answer.slice(0, state.answer.length - 1)
+            });
+        case 'CLEAR_ALL':
+            return Object.assign({}, state, initialState);
         default:
             return state;
     }
