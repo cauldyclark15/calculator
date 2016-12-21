@@ -77,7 +77,7 @@ const CalcuReducer = (state = initialState, action) => {
                 equalPressed: false,
             });
         case 'GET_ANSWER':
-            if (state.answer === 'Infinity') {
+            if (state.answer === 'Infinity' || state.previous === 0) {
                 return state;
             }
             return Object.assign({}, state, {
