@@ -7,3 +7,18 @@ body {
 input {
   text-align: right;
 }
+
+.history {
+  height: 15px;
+  width: 200px;
+  border-width: 1px;
+  border-color: black
+}
+
+.main {
+  height: 35px;
+  width: 200px;
+  font-size: 25px;
+  border-width: 1px;
+  border-color: black;
+}

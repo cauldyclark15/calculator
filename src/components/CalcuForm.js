@@ -11,11 +11,8 @@ import {ButtonToolbar} from 'react-bootstrap';
 
 const CalcuForm = () => (
     <div>
-        
         <History />
         <Display />
-    
-    
         <ButtonToolbar>
             <ClearEntry>CE</ClearEntry>
             <ClearAll>C</ClearAll>

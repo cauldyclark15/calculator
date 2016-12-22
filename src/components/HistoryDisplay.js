@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 const HistoryDisplay = ({history}) => (
     <div>
-        <input type="text" value={history} readOnly="readonly" />
+        <input className="history" type="text" value={history} readOnly="readonly" />
     </div>
 );
 
