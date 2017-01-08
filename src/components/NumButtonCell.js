@@ -4,7 +4,7 @@ import {inputDigit} from '../actions/action';
 import {Button} from 'react-bootstrap';
 
 let NumButtonCell = ({dispatch, children}) => (
-    <Button bsStyle="default" onClick={() => {
+    <Button id={children === '0' ? 'zerBtn' : children} bsStyle="default" onClick={() => {
         dispatch(inputDigit(children));
     }}>
         {children}

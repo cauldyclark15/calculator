@@ -4,7 +4,7 @@ import {clearAll} from '../actions/action';
 import {Button} from 'react-bootstrap';
 
 let CLButtonCell = ({dispatch, children}) => (
-    <Button bsSize="small" bsStyle="danger" onClick={() => {
+    <Button bsStyle="danger" onClick={() => {
         dispatch(clearAll());
     }}>
         {children}

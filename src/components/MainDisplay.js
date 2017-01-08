@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 const MainDisplay = ({answer}) => (
     <div>
-        <input className="main" type="text" value={answer} readOnly="readonly" />
+        <input id="main" type="text" value={answer} readOnly="readonly" />
     </div>
 );
 

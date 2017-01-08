@@ -1,24 +1,33 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
 input {
   text-align: right;
+  width: 198px;
 }
 
-.history {
-  height: 15px;
-  width: 200px;
-  border-width: 1px;
-  border-color: black
+button {
+  height: 40px;
+  width: 50px;
 }
 
-.main {
-  height: 35px;
-  width: 200px;
-  font-size: 25px;
-  border-width: 1px;
-  border-color: black;
+#history {
+  border-bottom-color: white;
+}
+
+#main {
+  border-top-color: white;
+  height: 40px;
+  font-size: 20px;
+}
+
+#equBtn {
+  position: absolute;
+  left: 148px;
+  height: 80px;
+}
+
+#zerBtn {
+  width: 99px;
+}
+
+body {
+  background-color: grey;
 }

@@ -4,7 +4,7 @@ import {getAnswer} from '../actions/action';
 import {Button} from 'react-bootstrap';
 
 let EquButtonCell = ({dispatch, children}) => (
-    <Button bsStyle="default" onClick={() => {
+    <Button id="equBtn" bsStyle="default" onClick={() => {
         dispatch(getAnswer());
     }}>
         {children}
